@@ -1,0 +1,135 @@
+﻿ZIPCODE,Latitude,Longitude,Walk Score,Walk Description,Transit Score,Transit Description,Bike Score,Bike Description
+90001,33.973951,-118.248405,87,Very Walkable,61,Good Transit,57,Bikeable
+90002,33.950514,-118.245855,57,Somewhat Walkable,52,Good Transit,58,Bikeable
+90003,33.949164,-118.273156,68,Somewhat Walkable,57,Good Transit,75,Very Bikeable
+90004,34.076198,-118.310723,93,Walker's Paradise,61,Good Transit,64,Bikeable
+90005,34.059163,-118.306892,97,Walker's Paradise,78,Excellent Transit,61,Bikeable
+90006,34.048042,-118.294177,94,Walker's Paradise,69,Good Transit,71,Very Bikeable
+90007,34.028133,-118.284828,90,Very Walkable,72,Excellent Transit,96,Biker's Paradise
+90008,34.009552,-118.346724,36,Car-Dependent,51,Good Transit,16,Somewhat Bikeable
+90010,34.062148,-118.315889,91,Walker's Paradise,74,Excellent Transit,60,Bikeable
+90011,34.00709,-118.258681,80,Very Walkable,59,Good Transit,75,Very Bikeable
+90012,34.065875,-118.238728,93,Walker's Paradise,85,Excellent Transit,55,Bikeable
+90013,34.045406,-118.240454,94,Walker's Paradise,99,Rider's Paradise,78,Very Bikeable
+90014,34.043146,-118.251746,97,Walker's Paradise,100,Rider's Paradise,90,Biker's Paradise
+90015,34.039378,-118.266299,87,Very Walkable,96,Rider's Paradise,85,Very Bikeable
+90016,34.028332,-118.354338,82,Very Walkable,59,Good Transit,77,Very Bikeable
+90017,34.052913,-118.26434,94,Walker's Paradise,99,Rider's Paradise,64,Bikeable
+90018,34.028887,-118.317183,76,Very Walkable,51,Good Transit,59,Bikeable
+90019,34.049841,-118.33846,88,Very Walkable,62,Good Transit,59,Bikeable
+90020,34.06638,-118.30987,97,Walker's Paradise,78,Excellent Transit,67,Bikeable
+90021,34.029036,-118.23787,57,Somewhat Walkable,59,Good Transit,69,Bikeable
+90023,34.022502,-118.199613,81,Very Walkable,56,Good Transit,45,Somewhat Bikeable
+90024,34.065729,-118.434999,52,Somewhat Walkable,70,Excellent Transit,40,Somewhat Bikeable
+90025,34.04536,-118.445818,89,Very Walkable,64,Good Transit,75,Very Bikeable
+90026,34.080017,-118.262643,96,Walker's Paradise,57,Good Transit,60,Bikeable
+90027,34.127194,-118.295647,12,Car-Dependent,32,Some Transit,29,Somewhat Bikeable
+90028,34.099912,-118.326912,98,Walker's Paradise,72,Excellent Transit,79,Very Bikeable
+90029,34.089848,-118.294661,92,Walker's Paradise,70,Excellent Transit,72,Very Bikeable
+90031,34.085807,-118.206617,12,Car-Dependent,59,Good Transit,20,Somewhat Bikeable
+90032,34.078195,-118.185497,41,Car-Dependent,46,Some Transit,19,Somewhat Bikeable
+90033,34.05038,-118.211991,89,Very Walkable,75,Excellent Transit,65,Bikeable
+90034,34.030578,-118.399613,79,Very Walkable,58,Good Transit,82,Very Bikeable
+90035,34.051809,-118.383674,96,Walker's Paradise,47,Some Transit,54,Bikeable
+90036,34.07041,-118.350411,89,Very Walkable,60,Good Transit,70,Very Bikeable
+90037,34.002723,-118.287487,76,Very Walkable,64,Good Transit,79,Very Bikeable
+90038,34.088475,-118.325527,96,Walker's Paradise,60,Good Transit,78,Very Bikeable
+90039,34.111525,-118.260552,67,Somewhat Walkable,46,Some Transit,77,Very Bikeable
+90041,34.137412,-118.207607,79,Very Walkable,50,Good Transit,39,Somewhat Bikeable
+90042,34.114708,-118.192098,83,Very Walkable,63,Good Transit,39,Somewhat Bikeable
+90043,33.988505,-118.336358,79,Very Walkable,52,Good Transit,57,Bikeable
+90044,33.938108,-118.285706,56,Somewhat Walkable,66,Good Transit,68,Bikeable
+90045,33.942108,-118.417488,16,Car-Dependent,24,Minimal Transit,31,Somewhat Bikeable
+90046,34.108455,-118.362081,14,Car-Dependent,34,Some Transit,9,Somewhat Bikeable
+90047,33.953617,-118.308429,78,Very Walkable,49,Some Transit,59,Bikeable
+90048,34.072924,-118.37271,92,Walker's Paradise,63,Good Transit,71,Very Bikeable
+90049,34.091829,-118.491244,6,Car-Dependent,0,No Nearby Transit,2,Somewhat Bikeable
+90057,34.061735,-118.276757,92,Walker's Paradise,81,Excellent Transit,51,Bikeable
+90062,34.003638,-118.308806,64,Somewhat Walkable,56,Good Transit,53,Bikeable
+90063,34.045105,-118.185914,75,Very Walkable,51,Good Transit,34,Somewhat Bikeable
+90064,34.037252,-118.423573,74,Very Walkable,62,Good Transit,74,Very Bikeable
+90065,34.112272,-118.225496,29,Car-Dependent,38,Some Transit,17,Somewhat Bikeable
+90066,34.002028,-118.430657,89,Very Walkable,50,Good Transit,91,Biker's Paradise
+90067,34.057597,-118.413998,93,Walker's Paradise,58,Good Transit,49,Somewhat Bikeable
+90068,34.129772,-118.330989,1,Car-Dependent,25,Some Transit,25,Somewhat Bikeable
+90069,34.093828,-118.381697,74,Very Walkable,60,Good Transit,30,Somewhat Bikeable
+90071,34.052876,-118.254943,96,Walker's Paradise,100,Rider's Paradise,55,Bikeable
+90077,34.108537,-118.457081,3,Car-Dependent,0,No Nearby Transit,13,Somewhat Bikeable
+90089,34.020221,-118.286035,81,Very Walkable,75,Excellent Transit,92,Biker's Paradise
+90094,33.975416,-118.416989,72,Very Walkable,39,Some Transit,63,Bikeable
+90095,34.071312,-118.443545,63,Somewhat Walkable,67,Good Transit,58,Bikeable
+90210,34.10263,-118.415972,1,Car-Dependent,0,No Nearby Transit,1,Somewhat Bikeable
+90211,34.064958,-118.382979,88,Very Walkable,62,Good Transit,63,Bikeable
+90212,34.06221,-118.401966,86,Very Walkable,61,Good Transit,56,Bikeable
+90230,33.998214,-118.394059,79,Very Walkable,38,Some Transit,56,Bikeable
+90232,34.019323,-118.391902,79,Very Walkable,58,Good Transit,90,Biker's Paradise
+90247,33.888315,-118.295256,81,Very Walkable,38,Some Transit,54,Bikeable
+90248,33.876482,-118.284077,33,Car-Dependent,53,Good Transit,56,Bikeable
+90272,34.04806,-118.52647,90,Walker's Paradise,32,Some Transit,52,Bikeable
+90291,33.993396,-118.465193,92,Walker's Paradise,54,Good Transit,93,Biker's Paradise
+90293,33.947305,-118.439841,14,Car-Dependent,29,Some Transit,33,Somewhat Bikeable
+90301,33.956526,-118.358654,81,Very Walkable,51,Good Transit,62,Bikeable
+90302,33.975332,-118.355252,90,Very Walkable,49,Some Transit,43,Somewhat Bikeable
+90304,33.937887,-118.358559,75,Very Walkable,53,Good Transit,60,Bikeable
+90305,33.95889,-118.330548,69,Somewhat Walkable,44,Some Transit,50,Bikeable
+90402,34.034666,-118.504039,48,Car-Dependent,34,Some Transit,73,Very Bikeable
+90403,34.030755,-118.492101,87,Very Walkable,57,Good Transit,91,Biker's Paradise
+90404,34.026608,-118.473643,87,Very Walkable,63,Good Transit,98,Biker's Paradise
+90405,34.011167,-118.46963,84,Very Walkable,50,Good Transit,96,Biker's Paradise
+90501,33.835665,-118.303805,72,Very Walkable,43,Some Transit,57,Bikeable
+90504,33.867257,-118.330794,62,Somewhat Walkable,35,Some Transit,40,Somewhat Bikeable
+90710,33.79002,-118.29785,69,Somewhat Walkable,45,Some Transit,60,Bikeable
+90717,33.79224,-118.31507,88,Very Walkable,41,Some Transit,72,Very Bikeable
+90731,33.753088,-118.253053,4,Car-Dependent,0,No Nearby Transit,51,Bikeable
+90732,33.74212,-118.312878,47,Car-Dependent,35,Some Transit,25,Somewhat Bikeable
+90744,33.779417,-118.253853,72,Very Walkable,39,Some Transit,79,Very Bikeable
+90802,33.756024,-118.201101,21,Car-Dependent,35,Some Transit,43,Somewhat Bikeable
+90813,33.780017,-118.183701,90,Walker's Paradise,67,Good Transit,69,Bikeable
+91030,34.108957,-118.156615,74,Very Walkable,58,Good Transit,56,Bikeable
+91040,34.261962,-118.336078,9,Car-Dependent,32,Some Transit,14,Somewhat Bikeable
+91105,34.13946,-118.166649,11,Car-Dependent,40,Some Transit,22,Somewhat Bikeable
+91201,34.17051,-118.289463,86,Very Walkable,41,Some Transit,61,Bikeable
+91202,34.167926,-118.267539,51,Somewhat Walkable,38,Some Transit,41,Somewhat Bikeable
+91204,34.136194,-118.260934,86,Very Walkable,58,Good Transit,60,Bikeable
+91205,34.13658,-118.245839,86,Very Walkable,53,Good Transit,73,Very Bikeable
+91206,34.160359,-118.213769,3,Car-Dependent,0,No Nearby Transit,2,Somewhat Bikeable
+91208,34.185833,-118.239524,10,Car-Dependent,26,Some Transit,4,Somewhat Bikeable
+91214,34.236302,-118.249185,62,Somewhat Walkable,26,Some Transit,31,Somewhat Bikeable
+91303,34.198292,-118.600914,84,Very Walkable,55,Good Transit,90,Biker's Paradise
+91304,34.224377,-118.632656,17,Car-Dependent,27,Some Transit,32,Somewhat Bikeable
+91306,34.209532,-118.577563,68,Somewhat Walkable,40,Some Transit,56,Bikeable
+91307,34.200833,-118.6649,11,Car-Dependent,18,Minimal Transit,9,Somewhat Bikeable
+91316,34.160236,-118.515472,73,Very Walkable,42,Some Transit,50,Bikeable
+91324,34.238208,-118.55029,57,Somewhat Walkable,43,Some Transit,64,Bikeable
+91325,34.236683,-118.517588,33,Car-Dependent,38,Some Transit,44,Somewhat Bikeable
+91326,34.281486,-118.556005,28,Car-Dependent,0,No Nearby Transit,22,Somewhat Bikeable
+91330,34.247532,-118.526076,48,Car-Dependent,40,Some Transit,78,Very Bikeable
+91331,34.255442,-118.421314,58,Somewhat Walkable,48,Some Transit,54,Bikeable
+91335,34.200175,-118.540958,84,Very Walkable,48,Some Transit,61,Bikeable
+91340,34.286689,-118.435078,87,Very Walkable,52,Good Transit,55,Bikeable
+91343,34.237912,-118.482306,67,Somewhat Walkable,38,Some Transit,60,Bikeable
+91344,34.294615,-118.507001,25,Car-Dependent,25,Some Transit,12,Somewhat Bikeable
+91345,34.265878,-118.457241,26,Car-Dependent,38,Some Transit,57,Bikeable
+91352,34.230854,-118.365856,71,Very Walkable,38,Some Transit,66,Bikeable
+91356,34.155097,-118.547553,11,Car-Dependent,0,No Nearby Transit,4,Somewhat Bikeable
+91364,34.153733,-118.593408,8,Car-Dependent,23,Minimal Transit,9,Somewhat Bikeable
+91367,34.178068,-118.615714,41,Car-Dependent,43,Some Transit,55,Bikeable
+91401,34.178483,-118.431791,71,Very Walkable,51,Good Transit,77,Very Bikeable
+91402,34.222506,-118.444689,78,Very Walkable,51,Good Transit,53,Bikeable
+91403,34.147149,-118.463365,58,Somewhat Walkable,51,Good Transit,42,Somewhat Bikeable
+91405,34.199824,-118.447609,82,Very Walkable,52,Good Transit,58,Bikeable
+91406,34.195685,-118.490752,65,Somewhat Walkable,43,Some Transit,53,Bikeable
+91411,34.178522,-118.459234,71,Very Walkable,54,Good Transit,71,Very Bikeable
+91423,34.148617,-118.433298,85,Very Walkable,44,Some Transit,55,Bikeable
+91436,34.151729,-118.490755,58,Somewhat Walkable,36,Some Transit,21,Somewhat Bikeable
+91501,34.200993,-118.292773,2,Car-Dependent,0,No Nearby Transit,1,Somewhat Bikeable
+91504,34.204568,-118.326365,56,Somewhat Walkable,30,Some Transit,29,Somewhat Bikeable
+91505,34.173885,-118.346937,78,Very Walkable,37,Some Transit,86,Very Bikeable
+91506,34.169706,-118.323548,82,Very Walkable,38,Some Transit,73,Very Bikeable
+91522,33.786594,-118.298662,61,Somewhat Walkable,42,Some Transit,55,Bikeable
+91601,34.1692,-118.372498,89,Very Walkable,65,Good Transit,76,Very Bikeable
+91602,34.150818,-118.368159,76,Very Walkable,45,Some Transit,72,Very Bikeable
+91604,34.139082,-118.392751,77,Very Walkable,43,Some Transit,49,Somewhat Bikeable
+91605,34.207295,-118.400022,50,Car-Dependent,42,Some Transit,59,Bikeable
+91606,34.185767,-118.388324,83,Very Walkable,48,Some Transit,64,Bikeable
+91607,34.165783,-118.399795,85,Very Walkable,49,Some Transit,66,Bikeable
