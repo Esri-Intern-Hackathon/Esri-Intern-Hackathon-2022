@@ -1,0 +1,600 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>
+      TransportNation
+    </title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+      #mainWindow {
+        padding: .5em;
+        background-color: #fff;
+      }
+
+      #optionDiv {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        background: #1D2224;
+      }
+      #mainWindow p, #uploadForm {
+          display: block;
+          padding: .1em;
+        }
+
+      #cycleMainSscore {
+        margin-top: 140px;
+
+      }
+
+      #calculateScoreButton {
+        background: #FFA500;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        margin-left: 200px;
+
+      }
+      
+      #pleaseRateText {
+        text-align: center;
+      }
+
+      #textBike1 {
+        margin-left: 30px;
+      }
+
+      #scoreDisplay {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        align-items: center;
+      }
+
+      #carMainScore {
+        margin-top: 140px;
+        margin-left: 30px;
+      }
+
+      #busMainScore {
+        margin-left: 100px;
+        margin-top: 20px;
+
+      }
+
+      #walkMainScore {
+        margin-bottom: 50px;
+
+      }
+
+
+      #scooterMainScore {
+        margin-top: 35px;
+        margin-left: 50px;
+      }
+
+      #zipCodeText {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background: #1D2224;
+      }
+
+      #zipCode {
+        color: #FFA500;
+        margin-left: 40px;
+      }
+
+
+      .fontSetUp {
+        color: white;
+        font-family: sans-serif;
+      }
+      
+
+    /*span {cursor:pointer; }*/
+    .number{
+      margin-left: 250px;
+      width: 40%;
+    }
+
+
+    .userScoreDisplay {
+      margin-top: 35px;
+      margin-left: 200px;
+      width: 60%;
+
+    }
+
+    .userScorePreferenceAlignment {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    
+    .minus, .plus{
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      margin-left: 20px;
+    }
+    #userBike,#userWalk,#userTransit,#userDrive,#userScooter{
+      height: 20px;
+      width: 20px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      border:none;  
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 20px;
+      background: #1D2224;
+    }
+      
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.24/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.24/"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+    <script>
+      var zipcode = "";
+      require([
+        "esri/config",
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/widgets/Expand",
+        "esri/request",
+        "esri/layers/FeatureLayer",
+        "esri/layers/support/Field",
+        "esri/Graphic",
+        "esri/widgets/Slider",
+        "esri/symbols/Font"
+      ], (
+        esriConfig,
+        Map,
+        MapView,
+        Expand,
+        request,
+        FeatureLayer,
+        Field,
+        Graphic,
+        Slider,
+        Font
+      ) => {
+        const portalUrl = "https://www.arcgis.com";
+
+        document
+          .getElementById("uploadForm")
+          .addEventListener("change", (event) => {
+            const fileName = event.target.value.toLowerCase();
+            if (fileName.indexOf(".zip") !== -1) {
+              //is file a zip - if not notify user
+              generateFeatureCollection(fileName);
+            } else {
+              document.getElementById("upload-status").innerHTML = '<p style="color:red">Add shapefile as .zip file</p>';
+            }
+          });
+
+        const map = new Map({
+          basemap: "dark-gray-vector"
+        });
+
+        const font = new Font({
+          family: "sans-serif"
+        })
+
+        const view = new MapView({
+          center: [-41.647, 36.41],
+          zoom: 2,
+          map: map,
+          container: "viewDiv",
+          popup: {
+            defaultPopupTemplateEnabled: true
+          }
+        });
+
+        
+        const sliderValue = document.getElementById("sliderValue");
+        
+
+        const fileForm = document.getElementById("mainWindow");
+
+        const expand = new Expand({
+          expandIconClass: "esri-icon-upload",
+          view: view,
+          content: fileForm
+        });
+
+        view.ui.add(expand, "top-right");
+
+        function generateFeatureCollection(fileName) {
+          let name = fileName.split(".");
+          // Chrome adds c:\fakepath to the value - we need to remove it
+          name = name[0].replace("c:\\fakepath\\", "");
+
+          document.getElementById("upload-status").innerHTML ="<b>Loading </b>" + name;
+
+          const params = {
+            name: name,
+            targetSR: view.spatialReference,
+            maxRecordCount: 1000,
+            enforceInputFileSizeLimit: true,
+            enforceOutputJsonSizeLimit: true
+          };
+
+          // generalize features to 10 meters for better performance
+          params.generalize = true;
+          params.maxAllowableOffset = 10;
+          params.reducePrecision = true;
+          params.numberOfDigitsAfterDecimal = 0;
+
+          const myContent = {
+            filetype: "shapefile",
+            publishParameters: JSON.stringify(params),
+            f: "json"
+          };
+
+          // use the REST generate operation to generate a feature collection from the zipped shapefile
+          request(portalUrl + "/sharing/rest/content/features/generate", {
+            query: myContent,
+            body: document.getElementById("uploadForm"),
+            responseType: "json"
+          })
+            .then((response) => {
+              const layerName = response.data.featureCollection.layers[0].layerDefinition.name;
+              document.getElementById("upload-status").innerHTML ="<b>Loaded: </b>" + layerName;
+              addShapefileToMap(response.data.featureCollection);
+              
+            })
+            .catch(errorHandler);
+        }
+
+        function errorHandler(error) {
+          document.getElementById("upload-status").innerHTML ="<p style='color:red;max-width: 500px;'>" + error.message + "</p>";
+        }
+
+        var layers;
+        var featureLayer;
+        function addShapefileToMap(featureCollection) {
+          // add the shapefile to the map and zoom to the feature collection extent
+          // if you want to persist the feature collection when you reload browser, you could store the
+          // collection in local storage by serializing the layer using featureLayer.toJson()
+          // see the 'Feature Collection in Local Storage' sample for an example of how to work with local storage
+          let sourceGraphics = [];
+          //alert(1);
+          showhide("optionDiv");
+          //alert(3);
+           layers = featureCollection.layers.map((layer) => {
+            const graphics = layer.featureSet.features.map((feature) => {
+              return Graphic.fromJSON(feature);
+            });
+            sourceGraphics = sourceGraphics.concat(graphics);
+             featureLayer = new FeatureLayer({
+              objectIdField: "FID",
+              source: graphics,
+              fields: layer.layerDefinition.fields.map((field) => {
+                return Field.fromJSON(field);
+              })
+            });
+            return featureLayer;
+            // associate the feature with the popup on click to enable highlight and zoom to
+          });
+          map.addMany(layers);
+          view.goTo(sourceGraphics).catch((error) => {
+            if (error.name != "AbortError") {
+              console.error(error);
+            }
+          });
+
+          document.getElementById("upload-status").innerHTML = "";
+        }
+        var wellsGeometries;  
+        view.on("click", (event) => {
+        
+          view.hitTest(event).then((response2) => {  
+            
+            let query = featureLayer.createQuery();
+            query.geometry = event.mapPoint;
+            featureLayer.queryFeatures(query).then((response) => {
+              wellsGeometries = response.features.map(function(feature) {
+              return feature.attributes;
+            });
+              if(typeof wellsGeometries !== 'undefined' && typeof wellsGeometries[0] !== 'undefined' && typeof wellsGeometries[0].ZIPCODE !== 'undefined'){
+              var zc = wellsGeometries[0].ZIPCODE;
+              document.getElementById("zipCode").innerHTML = zc
+              $("#zipCode").val(zc);
+
+              var bs = wellsGeometries[0].Bike_Score;
+              $("#bikeScore").val(bs);
+
+              var ts = wellsGeometries[0].Transit_Sc;
+              $("#transitScore").val(ts);
+
+              var ws = wellsGeometries[0].Walk_Score;
+              $("#walkScore").val(ws);
+
+              var ds = wellsGeometries[0].DrivingSco;
+              $("#driveScore").val(ds);
+
+              var ss = wellsGeometries[0].ScooterSco;
+              $("#scooterScore").val(ss);
+
+              var os = wellsGeometries[0].OverallSco;
+              $("#overallScore").val(os);
+            }
+            });
+            
+          });  
+        });
+      });
+      
+      function showhide(id) {
+        var e = document.getElementById(id);
+        e.style.display = (e.style.display == 'flex') ? 'none' : 'flex';
+        document.getElementById("viewDiv").style.height="65%";
+     }
+
+      $(document).ready(function() {
+      $('#minusBike').click(function () {
+        var $input = $(this).parent().find('#userBike');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+      });
+      $('#plusBike').click(function () {
+        var $input = $(this).parent().find('#userBike');
+        if($input.val()<10){
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        }
+        return false;
+      });
+
+      $('#minusWalk').click(function () {
+        var $input = $(this).parent().find('#userWalk');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+      });
+      $('#plusWalk').click(function () {
+        var $input = $(this).parent().find('#userWalk');
+        if($input.val()<10){
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        }
+        return false;
+      });
+
+      $('#minusTransit').click(function () {
+        var $input = $(this).parent().find('#userTransit');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+      });
+      $('#plusTransit').click(function () {
+        var $input = $(this).parent().find('#userTransit');
+        if($input.val()<10){
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        }
+        return false;
+      });
+
+      $('#minusDrive').click(function () {
+        var $input = $(this).parent().find('#userDrive');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+      });
+      $('#plusDrive').click(function () {
+        var $input = $(this).parent().find('#userDrive');
+        if($input.val()<10){
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        }
+        return false;
+      });
+
+      $('#minusScooter').click(function () {
+        var $input = $(this).parent().find('#userScooter');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+      });
+      $('#plusScooter').click(function () {
+        var $input = $(this).parent().find('#userScooter');
+        if($input.val()<10){
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        }
+        return false;
+      });
+    });
+
+      function weightedSumScore() {
+
+        document.getElementById('yourScore').style.display = "block";
+
+        var userWalkWeight = $("#userWalk").val();
+        var userBikeWeight = $("#userBike").val();
+        var userTransitWeight = $("#userTransit").val();
+        var userDriveWeight = $("#userDrive").val();
+        var userScootWeight = $("#userScooter").val();
+
+        var defaultWalkScore = $("#walkScore").val();
+        var defaultBikeScore = $("#bikeScore").val();
+        var defaultTransitScore = $("#transitScore").val();
+        var defaultDriveScore = $("#driveScore").val();
+        var defaultScootScore = $("#scooterScore").val();
+
+        weightedSum = userWalkWeight * defaultWalkScore + 
+                      userBikeWeight * defaultBikeScore + 
+                      userTransitWeight * defaultTransitScore + 
+                      userScootWeight * defaultScootScore + 
+                      userDriveWeight * defaultDriveScore;
+        normalizedScore = Math.round(weightedSum * 0.1);
+        document.getElementById("userOverallScore").innerHTML = normalizedScore;
+
+        $("#userOverallScore").val(normalizedScore);
+        return normalizedScore;
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div id="mainWindow">
+      <div>
+        <div style="padding-left:4px;">
+          
+          <p>Add a zipped shapefile to the map.</p>
+          
+          <form enctype="multipart/form-data" method="post" id="uploadForm">
+            <div class="field">
+              <label class="file-upload">
+                <span><strong>Add File</strong></span>
+                <input type="file" name="file" id="inFile" />
+              </label>
+            </div>
+          </form>
+          <span
+            class="file-upload-status"
+            style="opacity:1;"
+            id="upload-status"
+          ></span>
+          <div id="fileInfo"></div>
+        </div>
+      </div>
+    </div>
+    <div id="viewDiv"></div>
+    <div id="infoDiv" class="esri-widget">
+      <div id="description">
+        
+        <span id="sliderValue"></span>
+      </div>
+      <div id="sliderContainer">
+        <div id="sliderDiv"></div>
+      </div>
+      <div id="legendDiv"></div>
+    </div>
+    <div id="zipCodeText">
+          
+      <h2 class="fontSetup">Zip Code </h2>
+      <h2 id = "zipCode">    </h2>
+
+      </div>
+    <div id="optionDiv">
+      
+    
+
+      <div class="number">
+
+        
+        <h3 id="pleaseRateText" class="fontSetUp">Please rate your score</h3>
+        <br>
+        <div class="userScorePreferenceAlignment">
+        
+          <img src="icons8-cycling-96.png" id="imgBike1">
+
+          <p id="textBike1" class="fontSetUp">Bike</p> 
+          <img src="icons8-no-entry-24.png" class="minus" id="minusBike">
+          <input type="text" id="userBike" value="1" class="fontSetUp"/>
+          <img src="icons8-add-24.png" class="plus" id="plusBike">
+        </div>
+        <br>
+        <br>
+        
+        <div class="userScorePreferenceAlignment">
+          <img src="icons8-bus-96.png" id="imgBike1">
+          <p id="textBike1" class="fontSetUp">Transit</p>
+          
+          <img src="icons8-no-entry-24.png" class="minus" id="minusTransit">
+          <input type="text" id="userTransit" value="1" class="fontSetUp"/>
+          <img src="icons8-add-24.png" class="plus" id="plusTransit">
+        </div>
+        <br>
+        <br>
+        
+        <div class="userScorePreferenceAlignment">
+          <img src="icons8-walking-96.png" id="imgBike1">
+          <p id="textBike1" class="fontSetUp">Walk</p>
+          <img src="icons8-no-entry-24.png" class="minus" id="minusWalk">
+          <input type="text" id="userWalk" value="1" class="fontSetUp"/>
+          <img src="icons8-add-24.png"class="plus" id ="plusWalk">
+        </div>
+        <br>
+        <br>
+
+        <div class="userScorePreferenceAlignment">
+          <img src="icons8-car-96.png" id="imgBike1">
+          <p id="textBike1" class="fontSetUp">Drive</p>
+          <img src="icons8-no-entry-24.png" class="minus" id="minusDrive">
+          <input type="text" id="userDrive" value="1" class="fontSetUp"/>
+          <img src="icons8-add-24.png" class="plus" id="plusDrive">
+        </div>
+
+        
+        
+        <br>
+        <br>
+        <div class="userScorePreferenceAlignment">
+          <img src="icons8-kick-scooter-96.png" id="imgBike1">
+          <p id="textBike1" class="fontSetUp">Scooter</p>
+          <img src="icons8-no-entry-24.png" class="minus" id="minusScooter">
+          <input type="text" id="userScooter" value="1" class="fontSetUp"/>
+          <img src="icons8-add-24.png" class="plus" id="plusScooter">
+        </div>
+        
+        <br>
+        <br>
+        <button id="calculateScoreButton" onclick="weightedSumScore" class="fontSetUp">Compute Transport Score</button>
+        <br>
+        <div id="yourScore" style="display: none;">
+          Your Score : <span id = "userOverallScore"></span>
+        </div>
+
+      </div>
+      <div class="userScoreDisplay">
+        <h3 class="fontSetUp">Transportation Score based on your preferences</h3>
+        <div id="scoreDisplay">
+          <img src="icons8-cycling-96.png" id="cycleMainSscore">
+          <img src="icons8-walking-96.png" id="walkMainScore">
+          <img src="icons8-car-96.png" id="carMainScore">
+          <img src="icons8-kick-scooter-96.png" id="scooterMainScore">
+          <img src="icons8-bus-96.png" id="busMainScore">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
